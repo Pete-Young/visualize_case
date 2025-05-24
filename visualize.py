@@ -1,34 +1,9 @@
-# import pandas as pd
-# import open3d as o3d
-# import pyvista as pv
-# # 读取数据
-# data = pd.read_excel("wuhan_fit.xls")  # 如果是 Excel，用 pd.read_excel()
-# points = data[["x", "y", "z"]].values
-#
-# # 创建点云
-# pcd = o3d.geometry.PointCloud()
-# pcd.points = o3d.utility.Vector3dVector(points)
-#
-# # 预处理（可选）
-# pcd = pcd.voxel_down_sample(voxel_size=0.05)
-# pcd, _ = pcd.remove_statistical_outlier(nb_neighbors=20, std_ratio=2.0)
-#
-# # 计算法线
-# pcd.estimate_normals()
-#
-# # 泊松重建
-# mesh, _ = o3d.geometry.TriangleMesh.create_from_point_cloud_poisson(pcd, depth=8)
-#
-# # 保存并可视化
-# o3d.io.write_triangle_mesh("reconstructed_mesh.ply", mesh)
-# o3d.visualization.draw_geometries([mesh])
-
 import pandas as pd
 import pyvista as pv
 import numpy as np
 
 # 读取数据
-data = pd.read_excel("wuhan_fit.xls")
+data = pd.read_excel("wu_fit.xls")
 # 生成示例数据
 points = data[["x", "y", "z"]].values  # 转换为NumPy数组
 mesh = pv.PolyData(points).delaunay_2d()
